@@ -1,0 +1,102 @@
+---
+const microFrontends = [
+  {
+    id: 'rust-canvas',
+    title: 'Rust 2D Canvas Renderer',
+    lang: 'Rust',
+    badgeColor: 'border-orange-500/40 text-orange-400 bg-orange-950/30',
+    description: 'High-speed particle system compiled to WASM with direct memory buffer access.',
+    status: 'Pending Compilation'
+  },
+  {
+    id: 'cpp-benchmark',
+    title: 'C++ Sorting & Pathfinding Engine',
+    lang: 'C++',
+    badgeColor: 'border-blue-500/40 text-blue-400 bg-blue-950/30',
+    description: 'Emscripten-compiled algorithm visualizer running native algorithmic speed tests.',
+    status: 'Pending Compilation'
+  },
+  {
+    id: 'zig-physics',
+    title: 'Zig Physics Simulation',
+    lang: 'Zig',
+    badgeColor: 'border-amber-500/40 text-amber-400 bg-amber-950/30',
+    description: 'Low-overhead rigid body physics engine built with explicit memory allocations.',
+    status: 'Pending Compilation'
+  },
+  {
+    id: 'lua-engine',
+    title: 'Embedded Lua REPL',
+    lang: 'Lua',
+    badgeColor: 'border-sky-500/40 text-sky-400 bg-sky-950/30',
+    description: 'In-browser Lua scripting interpreter allowing live code execution in the browser.',
+    status: 'Pending Compilation'
+  },
+  {
+    id: 'stencil-widget',
+    title: 'Stencil.js Web Component Dashboard',
+    lang: 'Stencil.js',
+    badgeColor: 'border-emerald-500/40 text-emerald-400 bg-emerald-950/30',
+    description: 'Framework-agnostic custom web component acting as a control panel for WASM targets.',
+    status: 'Pending Compilation'
+  }
+];
+---
+
+<section id="wasm-showcase" class="py-16 space-y-8 border-t border-slate-900">
+  
+  <!-- Section Header -->
+  <div class="space-y-3">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/60 border border-indigo-800/50 text-indigo-400 text-xs font-mono">
+      <span>🧪</span> Micro-Frontend Host Architecture
+    </div>
+    <h2 class="text-3xl font-bold tracking-tight text-white">
+      WebAssembly & Custom Web Components
+    </h2>
+    <p class="text-slate-400 max-w-2xl text-sm leading-relaxed">
+      Isolated DOM containers configured to mount low-level WebAssembly binaries and reusable Web Components.
+    </p>
+  </div>
+
+  <!-- Micro-Frontend Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {microFrontends.map(mfe => (
+      <div class="rounded-xl bg-slate-900/60 border border-slate-800 p-5 flex flex-col justify-between hover:border-slate-700/80 transition-all group">
+        
+        <!-- Module Header -->
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <span class={`px-2.5 py-0.5 rounded text-[11px] font-mono border ${mfe.badgeColor}`}>
+              {mfe.lang}
+            </span>
+            <span class="text-[11px] font-mono text-slate-500 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500/80 animate-pulse"></span>
+              {mfe.status}
+            </span>
+          </div>
+
+          <h3 class="font-semibold text-white text-base group-hover:text-cyan-400 transition-colors">
+            {mfe.title}
+          </h3>
+          <p class="text-slate-400 text-xs leading-relaxed">
+            {mfe.description}
+          </p>
+        </div>
+
+        <!-- Mounting Target Slot -->
+        <div 
+          id={mfe.id} 
+          class="mt-5 p-4 min-h-[140px] bg-slate-950/60 rounded-lg border border-dashed border-slate-800/80 flex flex-col items-center justify-center gap-2 text-slate-600 font-mono text-xs group-hover:border-slate-700/60 transition-colors"
+        >
+          <svg class="w-6 h-6 text-slate-700 animate-spin" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          <span class="text-slate-500 text-[11px]">Host slot: <code class="text-cyan-500">#{mfe.id}</code></span>
+        </div>
+
+      </div>
+    ))}
+  </div>
+
+</section>
