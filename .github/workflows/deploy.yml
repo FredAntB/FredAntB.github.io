@@ -1,0 +1,63 @@
+name: Build & Deploy Unified Site
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Checkout Astro Root Site into current working directory (.)
+      - name: Checkout Astro Root Site
+        uses: actions/checkout@v7
+
+      # 2. Checkout Portfolio Repository into ./portfolio-repo
+      - name: Checkout Portfolio Repository
+        uses: actions/checkout@v7
+        with:
+          repository: 'FredAntB/Portfolio'
+          path: 'portfolio-repo'
+
+      # 3. Setup Node & Install Dependencies for Astro
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install Astro Dependencies
+        run: npm ci
+
+      # 4. Build Astro Root Page
+      - name: Build Astro Root
+        run: npm run build
+
+      # 5. Build Portfolio Source & Copy Output to ./dist/portfolio
+      - name: Build and Integrate Portfolio
+        run: |
+          mkdir -p dist/portfolio
+          cd portfolio-repo
+          npm ci
+          npm run build
+          cp -r dist/* ../dist/portfolio/
+
+      # 6. Upload & Deploy Unified dist/
+      - name: Upload GitHub Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
