@@ -50,7 +50,15 @@ jobs:
           cd portfolio-repo
           npm ci
           npm run build
-          cp -r dist/* ../dist/portfolio/
+
+          # Copy Stencil output (checks packages/host-shell/www, www/, or dist/)
+          if [ -d "packages/host-shell/www" ]; then
+            cp -r packages/host-shell/www/* ../dist/portfolio/
+          elif [ -d "www" ]; then
+            cp -r www/* ../dist/portfolio/
+          elif [ -d "dist" ]; then
+            cp -r dist/* ../dist/portfolio/
+          fi
 
       # 6. Upload & Deploy Unified dist/
       - name: Upload GitHub Pages Artifact
