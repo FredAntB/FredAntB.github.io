@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://FredAntB.github.io',
+  site: 'https://fredantb.github.io',
   base: '/',
   output: 'static',
 
