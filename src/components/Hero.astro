@@ -1,0 +1,104 @@
+---
+const techStack = [
+  { name: 'Rust', color: 'border-orange-500/40 text-orange-400 bg-orange-950/30' },
+  { name: 'WebAssembly', color: 'border-purple-500/40 text-purple-400 bg-purple-950/30' },
+  { name: 'Zig', color: 'border-amber-500/40 text-amber-400 bg-amber-950/30' },
+  { name: 'C++', color: 'border-blue-500/40 text-blue-400 bg-blue-950/30' },
+  { name: 'Lua', color: 'border-sky-500/40 text-sky-400 bg-sky-950/30' },
+  { name: 'Django', color: 'border-emerald-500/40 text-emerald-400 bg-emerald-950/30' },
+  { name: 'Angular', color: 'border-red-500/40 text-red-400 bg-red-950/30' },
+  { name: 'NestJS', color: 'border-rose-500/40 text-rose-400 bg-rose-950/30' },
+];
+---
+
+<section id="about" class="py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+  
+  <!-- Hero Content -->
+  <div class="lg:col-span-7 space-y-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800/50 text-cyan-400 text-xs font-mono">
+      <span>⚙️</span> Systems & Full-Stack Engineer
+    </div>
+
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+      Building High-Performance Web & <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-indigo-400">Micro-Frontend Systems</span>
+    </h1>
+
+    <p class="text-lg text-slate-400 leading-relaxed">
+      Full-stack software engineer specialized in building robust web applications, WebAssembly modules, micro-frontend architectures, and cloud services. Exploring the boundary between high-level web runtimes and low-level system performance.
+    </p>
+
+    <!-- Tech Badges -->
+    <div class="pt-2">
+      <p class="text-xs font-mono text-slate-500 uppercase tracking-wider mb-3">Core Tech Stack</p>
+      <div class="flex flex-wrap gap-2">
+        {techStack.map(tech => (
+          <span class={`px-2.5 py-1 rounded-md text-xs font-mono border ${tech.color}`}>
+            {tech.name}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA Actions -->
+    <div class="flex flex-wrap items-center gap-4 pt-4">
+      <a 
+        href="#wasm-showcase" 
+        class="px-5 py-2.5 rounded-lg bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-medium text-sm shadow-lg shadow-cyan-500/25 hover:opacity-90 transition-opacity flex items-center gap-2"
+      >
+        <span>Explore WASM Modules</span>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+        </svg>
+      </a>
+
+      <a 
+        href="https://github.com/FredAntB" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="px-5 py-2.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white font-medium text-sm border border-slate-800 transition-colors"
+      >
+        View GitHub
+      </a>
+    </div>
+  </div>
+
+  <!-- Terminal Preview Card -->
+  <div class="lg:col-span-5">
+    <div class="rounded-xl bg-slate-900/90 border border-slate-800 shadow-2xl overflow-hidden font-mono text-xs">
+      
+      <!-- Window Controls Header -->
+      <div class="bg-slate-950 px-4 py-3 border-b border-slate-800/80 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+        </div>
+        <span class="text-slate-500 text-[11px]">system_status.rs</span>
+      </div>
+
+      <!-- Terminal Body -->
+      <div class="p-5 space-y-3 text-slate-300">
+        <div class="flex items-center gap-2 text-cyan-400">
+          <span class="text-slate-500">$</span>
+          <span>wasm-pack build --target web</span>
+        </div>
+        <p class="text-emerald-400 pl-4">[+] Compiling webassembly_core v0.1.0</p>
+        <p class="text-slate-400 pl-4">[+] Optimizing binary size with wasm-opt -O4</p>
+        <p class="text-slate-400 pl-4">[+] Generated bindings: src/wasm/core_bg.wasm (42 KB)</p>
+        
+        <div class="pt-2 border-t border-slate-800/60 flex items-center gap-2 text-indigo-400">
+          <span class="text-slate-500">$</span>
+          <span>astro build --static</span>
+        </div>
+        <p class="text-emerald-400 pl-4">✓ Built in 1.42s — Output ready for GitHub Pages</p>
+
+        <div class="pt-2 text-slate-500 flex items-center gap-1">
+          <span class="text-cyan-400">&gt;</span>
+          <span class="animate-pulse">_</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
