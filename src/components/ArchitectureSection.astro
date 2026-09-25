@@ -1,0 +1,223 @@
+---
+import HostDiagram from './diagrams/HostArchitectureDiagram.astro';
+
+interface Article {
+  title: string;
+  description: string;
+  platform: 'Medium' | 'Dev.to' | 'Case Study' | 'Upcoming';
+  url?: string;
+  tags: string[];
+  status: 'Published' | 'Draft' | 'Planned';
+}
+
+const articles: Article[] = [
+  {
+    title: "I Applied Test-Driven Development to an AI Skill - Here's What I Learned",
+    description: "An AI Skill planned to aid on Spec Driven Development implemented via Test-Driven Development.",
+    platform: "Medium",
+    url: "https://medium.com/@antoniobalderramamendoza/i-applied-test-driven-development-to-an-ai-skill-heres-what-i-learned-2fa655a4c9f4",
+    tags: ["Claude", "Skills", "SDD", "TDD"],
+    status: "Published"
+  },
+  {
+    title: "Building a Polyglot Micro-Frontend Shell with Stencil.js & WebAssembly",
+    description: "An architectural deep-dive into orchestrating sandboxed WASM modules and isolated Web Components within a unified Stencil.js runtime shell.",
+    platform: "Medium",
+    tags: ["Stencil.js", "WASM", "Micro-Frontends", "Web Components"],
+    status: "Planned",
+  },
+  {
+    title: "Event-Driven Serverless Workflows on AWS with LocalStack Testing",
+    description: "Designing resilient event pipelines using AWS SQS, Lambda, and DynamoDB while maintaining local developer velocity.",
+    platform: "Dev.to",
+    tags: ["AWS", "Serverless", "DevOps", "Node.js"],
+    status: "Planned",
+  },
+  {
+    title: "Hardware Security Analysis & Firmware Vulnerability Mapping",
+    description: "Analyzing communication channels, buffer risks, and bootloader integrity on embedded microcontrollers.",
+    platform: "Case Study",
+    tags: ["Embedded", "Cybersecurity", "IoT", "C/C++"],
+    status: "Planned",
+  },
+];
+---
+
+<section id="architecture" class="relative py-24 px-4 max-w-7xl mx-auto border-t border-slate-800/60 overflow-hidden">
+  <!-- Background Glow Orbs -->
+  <div class="absolute top-1/4 -left-32 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none -z-10 animate-pulse"></div>
+  <div class="absolute bottom-1/3 -right-32 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+  <!-- Section Header -->
+  <div class="mb-14 text-center max-w-3xl mx-auto relative">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-cyan-950/80 text-cyan-400 border border-cyan-700/50 mb-4 shadow-[0_0_15px_rgba(6,182,212,0.25)]">
+      <span class="relative flex h-2 w-2">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-400"></span>
+      </span>
+      SYSTEM ARCHITECTURE
+    </div>
+    
+    <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-slate-100 via-slate-200 to-slate-400 mb-4 drop-shadow-sm">
+      Stencil.js Shell & WASM Kernel Architecture
+    </h2>
+    
+    <p class="text-slate-400 text-base md:text-lg leading-relaxed">
+      Astro delivers the static entry point, handing off orchestration to a standard-based <strong class="text-cyan-300 font-medium">Stencil.js App Shell</strong>. The shell manages dynamic micro-app mounting, inter-module event bus messaging, and high-performance WebAssembly kernel contexts.
+    </p>
+  </div>
+
+  <!-- Primary Architecture Diagram Frame with High-Tech Glow -->
+  <div class="relative mb-20 group">
+    <!-- Ambient Outer Glow -->
+    <div class="absolute -inset-0.5 bg-gradient-to-r from-cyan-500/30 via-purple-500/30 to-emerald-500/30 rounded-2xl blur-lg opacity-60 group-hover:opacity-100 transition duration-500 -z-10"></div>
+
+    <div class="bg-slate-950/90 rounded-2xl border border-slate-800/80 overflow-hidden shadow-[0_0_50px_-12px_rgba(6,182,212,0.15)] backdrop-blur-xl">
+      <!-- Terminal Header -->
+      <div class="bg-slate-900/90 px-6 py-4 border-b border-slate-800/80 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <div class="flex gap-1.5">
+            <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block shadow-[0_0_8px_rgba(244,63,94,0.6)]"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block shadow-[0_0_8px_rgba(245,158,11,0.6)]"></span>
+            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block shadow-[0_0_8px_rgba(16,185,129,0.6)]"></span>
+          </div>
+          <span class="text-xs font-mono text-slate-400 border-l border-slate-800 pl-3">
+            stencil-shell-kernel.excalidraw
+          </span>
+        </div>
+
+        <div class="flex items-center gap-2 text-xs font-mono">
+          <span class="px-2.5 py-0.5 rounded bg-slate-800/80 border border-sky-500/30 text-sky-300 shadow-[0_0_10px_rgba(56,189,248,0.15)]">Entry: Astro SSG</span>
+          <span class="px-2.5 py-0.5 rounded bg-slate-800/80 border border-cyan-500/30 text-cyan-300 shadow-[0_0_10px_rgba(6,182,212,0.15)]">Shell: Stencil.js</span>
+          <span class="px-2.5 py-0.5 rounded bg-slate-800/80 border border-purple-500/30 text-purple-300 shadow-[0_0_10px_rgba(168,85,247,0.15)]">Bus: CustomEvents</span>
+          <span class="px-2.5 py-0.5 rounded bg-slate-800/80 border border-emerald-500/30 text-emerald-300 shadow-[0_0_10px_rgba(16,185,129,0.15)]">Kernel: WASM</span>
+        </div>
+      </div>
+
+      <!-- Diagram Display Area -->
+      <div class="p-6 md:p-10 flex flex-col items-center justify-center min-h-[380px] bg-slate-950/60 relative group">
+        <HostDiagram />
+
+        <!-- Fallback Visual Placeholder -->
+        <div id="diagram-fallback" class="hidden flex-col items-center justify-center py-12 px-6 text-center border-2 border-dashed border-slate-800/80 rounded-xl max-w-2xl w-full bg-slate-900/30 backdrop-blur-sm">
+          <div class="w-16 h-16 rounded-full bg-cyan-950/80 border border-cyan-500/50 flex items-center justify-center text-cyan-400 mb-4 text-2xl font-mono shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+            ⚙️
+          </div>
+          <h3 class="text-lg font-semibold text-slate-200 mb-2">Excalidraw Diagram Container</h3>
+          <p class="text-sm text-slate-400 max-w-md mb-4">
+            Place your generated Excalidraw diagram export at <code class="text-cyan-300 font-mono text-xs bg-slate-800 px-1.5 py-0.5 rounded border border-slate-700/50">public/images/architecture-diagram.png</code>.
+          </p>
+          <span class="text-xs font-mono text-cyan-400/90 bg-cyan-950/60 px-3.5 py-1.5 rounded-full border border-cyan-800/60 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+            Astro Entry ──► Stencil.js Orchestrator ──► Polyglot Micro-Apps & WASM Kernel
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 Pillars Breakdown with Distinct Glow Profiles -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+    <!-- Pillar 1: Cyan Glow -->
+    <div class="relative p-6 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-cyan-500/50 transition-all duration-300 group hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(6,182,212,0.15)]">
+      <div class="w-10 h-10 rounded-lg bg-cyan-950/80 border border-cyan-700/50 flex items-center justify-center text-cyan-400 font-mono font-bold mb-4 shadow-[0_0_15px_rgba(6,182,212,0.25)] group-hover:scale-110 transition-transform">
+        01
+      </div>
+      <h3 class="text-lg font-semibold text-slate-100 mb-2 group-hover:text-cyan-300 transition-colors">Stencil.js App Shell</h3>
+      <p class="text-sm text-slate-400 leading-relaxed">
+        Acts as the main framework-agnostic orchestrator, leveraging Web Component standards to dynamically manage runtime mounting and lifecycle isolation.
+      </p>
+    </div>
+
+    <!-- Pillar 2: Purple Glow -->
+    <div class="relative p-6 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-purple-500/50 transition-all duration-300 group hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(168,85,247,0.15)]">
+      <div class="w-10 h-10 rounded-lg bg-purple-950/80 border border-purple-700/50 flex items-center justify-center text-purple-400 font-mono font-bold mb-4 shadow-[0_0_15px_rgba(168,85,247,0.25)] group-hover:scale-110 transition-transform">
+        02
+      </div>
+      <h3 class="text-lg font-semibold text-slate-100 mb-2 group-hover:text-purple-300 transition-colors">Inter-App Event Bus</h3>
+      <p class="text-sm text-slate-400 leading-relaxed">
+        Decoupled message broker using standard DOM Custom Events, enabling React and Angular micro-frontends to exchange states securely.
+      </p>
+    </div>
+
+    <!-- Pillar 3: Emerald Glow -->
+    <div class="relative p-6 rounded-xl bg-slate-900/50 border border-slate-800/80 hover:border-emerald-500/50 transition-all duration-300 group hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(16,185,129,0.15)]">
+      <div class="w-10 h-10 rounded-lg bg-emerald-950/80 border border-emerald-700/50 flex items-center justify-center text-emerald-400 font-mono font-bold mb-4 shadow-[0_0_15px_rgba(16,185,129,0.25)] group-hover:scale-110 transition-transform">
+        03
+      </div>
+      <h3 class="text-lg font-semibold text-slate-100 mb-2 group-hover:text-emerald-300 transition-colors">WASM Runtime Kernel</h3>
+      <p class="text-sm text-slate-400 leading-relaxed">
+        High-performance modules compiled from Rust, C++, Zig, or Lua executing inside sandboxed linear memory managed by the Stencil shell.
+      </p>
+    </div>
+  </div>
+
+  <!-- Articles Showcase -->
+  <div class="mt-16 pt-12 border-t border-slate-800/60">
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+      <div>
+        <h3 class="text-2xl font-bold text-slate-100">More on Architectures & Case Studies</h3>
+        <p class="text-sm text-slate-400 mt-1">Deep dives, publications, and architectural patterns.</p>
+      </div>
+      <span class="text-xs font-mono text-cyan-400 bg-cyan-950/60 border border-cyan-800/50 px-3.5 py-1.5 rounded-full shadow-[0_0_12px_rgba(6,182,212,0.2)]">
+        Technical Write-ups
+      </span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {articles.map((article) => (
+        <article class="relative p-6 rounded-xl bg-slate-900/40 border border-slate-800/80 flex flex-col justify-between hover:border-cyan-500/50 hover:bg-slate-900/70 transition-all duration-300 group hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(6,182,212,0.1)]">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="text-xs font-mono px-2 py-0.5 rounded bg-slate-800/80 text-slate-300 border border-slate-700/50">
+                {article.platform}
+              </span>
+              <span class={`text-xs font-mono px-2 py-0.5 rounded ${
+                article.status === 'Published' 
+                  ? 'bg-emerald-950/80 text-emerald-400 border border-emerald-800/50 shadow-[0_0_8px_rgba(16,185,129,0.2)]' 
+                  : article.status === 'Draft'
+                  ? 'bg-amber-950/80 text-amber-400 border border-amber-800/50 shadow-[0_0_8px_rgba(245,158,11,0.2)]'
+                  : 'bg-slate-800/80 text-slate-400 border border-slate-700/60'
+              }`}>
+                {article.status}
+              </span>
+            </div>
+
+            <h4 class="text-base font-semibold text-slate-200 group-hover:text-cyan-300 transition-colors mb-2 leading-snug">
+              {article.title}
+            </h4>
+
+            <p class="text-xs text-slate-400 leading-relaxed mb-4">
+              {article.description}
+            </p>
+          </div>
+
+          <div>
+            <div class="flex flex-wrap gap-1.5 mb-4">
+              {article.tags.map((tag) => (
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-950/80 text-slate-400 border border-slate-800/80 group-hover:border-slate-700 transition-colors">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+
+            {article.url ? (
+              <a 
+                href={article.url} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 hover:text-cyan-300 transition-colors group/link"
+              >
+                Read Article
+                <svg class="w-3.5 h-3.5 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            ) : (
+              <span class="text-xs font-mono text-slate-500 italic">Article in development</span>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
