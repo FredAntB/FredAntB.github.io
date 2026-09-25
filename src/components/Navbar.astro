@@ -1,18 +1,22 @@
 ---
-import GitHubIcon from './icons/GitHubIcon.astro';
-import LinkedInIcon from './icons/LinkedInIcon.astro';
+import GitHubIcon from "./icons/GithubIcon.astro";
+import LinkedInIcon from "./icons/LinkedInIcon.astro";
 
 const navLinks = [
-  { name: 'About', href: '#about' },
-  { name: 'Architecture', href: '#architecture' },
-  { name: 'Micro-Frontends', href: '#micro-frontends' },
-  { name: 'Interactive App', href: '/portfolio/', external: true },
-  { name: 'Contact', href: '#contact' },
+  { name: "About", href: "#about" },
+  { name: "Architecture", href: "#architecture" },
+  { name: "Micro-Frontends", href: "#micro-frontends" },
+  { name: "Interactive App", href: "/portfolio/", external: true },
+  { name: "Contact", href: "#contact" },
 ];
 
 const actionLinks = [
-  { name: 'GitHub', href: 'https://github.com/FredAntB', icon: 'github' },
-  { name: 'LinkedIn', href: 'https://linkedin.com/in/Frederick-Antonio-Balderrama-Mendoza/', icon: 'linkedin' },
+  { name: "GitHub", href: "https://github.com/FredAntB", icon: "github" },
+  {
+    name: "LinkedIn",
+    href: "https://linkedin.com/in/Frederick-Antonio-Balderrama-Mendoza/",
+    icon: "linkedin",
+  },
 ];
 
 const iconMap: Record<string, any> = {
@@ -21,68 +25,94 @@ const iconMap: Record<string, any> = {
 };
 ---
 
-<header class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-
+<header
+  class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80"
+>
+  <div
+    class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between"
+  >
     <!-- Brand / Identity -->
     <a href="/" class="flex items-center gap-2 group">
-      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-indigo-600 flex items-center justify-center font-mono font-bold text-white text-sm shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+      <div
+        class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-indigo-600 flex items-center justify-center font-mono font-bold text-white text-sm shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform"
+      >
         FB
       </div>
-      <span class="font-mono font-semibold tracking-tight text-slate-200 group-hover:text-cyan-400 transition-colors">
+      <span
+        class="font-mono font-semibold tracking-tight text-slate-200 group-hover:text-cyan-400 transition-colors"
+      >
         fredantb<span class="text-cyan-400">.dev</span>
       </span>
     </a>
 
     <!-- Desktop Navigation -->
     <nav class="hidden md:flex items-center gap-6">
-      {navLinks.map((link) => (
-        <a
-          href={link.href}
-          class={link.external
-            ? "text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1"
-            : "text-sm font-medium text-slate-400 hover:text-slate-100 transition-colors"
-          }
-        >
-          {link.name}
-          {link.external && (
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          )}
-        </a>
-      ))}
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class={
+              link.external
+                ? "text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors flex items-center gap-1"
+                : "text-sm font-medium text-slate-400 hover:text-slate-100 transition-colors"
+            }
+          >
+            {link.name}
+            {link.external && (
+              <svg
+                class="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            )}
+          </a>
+        ))
+      }
     </nav>
 
     <!-- Actions & Socials -->
     <div class="flex items-center gap-3">
       <!-- Status Badge -->
-      <div class="hidden sm:flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full">
+      <div
+        class="hidden sm:flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full"
+      >
         <span class="relative flex h-2 w-2">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          <span
+            class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"
+          ></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"
+          ></span>
         </span>
         Available for Projects
       </div>
 
       <!-- Social Links (Loop with Component Mapping) -->
       <div class="flex items-center gap-1 pl-2 border-l border-slate-800">
-        {actionLinks.map((action) => {
-          const IconComponent = iconMap[action.icon];
-          return (
-            <a
-              href={action.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="p-2 text-slate-400 hover:text-slate-100 hover:bg-slate-900 rounded-lg border border-transparent hover:border-slate-800 transition-all"
-              aria-label={action.name}
-            >
-              <IconComponent class="w-5 h-5 fill-current" />
-            </a>
-          );
-        })}
+        {
+          actionLinks.map((action) => {
+            const IconComponent = iconMap[action.icon];
+            return (
+              <a
+                href={action.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="p-2 text-slate-400 hover:text-slate-100 hover:bg-slate-900 rounded-lg border border-transparent hover:border-slate-800 transition-all"
+                aria-label={action.name}
+              >
+                <IconComponent class="w-5 h-5 fill-current" />
+              </a>
+            );
+          })
+        }
       </div>
     </div>
-
   </div>
 </header>
