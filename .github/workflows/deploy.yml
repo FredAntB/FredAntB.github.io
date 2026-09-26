@@ -2,7 +2,7 @@ name: Build & Deploy Unified Site
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -26,15 +26,15 @@ jobs:
       - name: Checkout Portfolio Repository
         uses: actions/checkout@v7
         with:
-          repository: 'FredAntB/Portfolio'
-          path: 'portfolio-repo'
+          repository: "FredAntB/Portfolio"
+          path: "portfolio-repo"
 
       # 3. Setup Node & Install Dependencies for Astro
       - name: Setup Node.js
         uses: actions/setup-node@v7
         with:
           node-version: 22
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install Astro Dependencies
         run: npm ci
@@ -51,8 +51,10 @@ jobs:
           npm ci
           npm run build
 
-          # Copy Stencil output (checks packages/host-shell/www, www/, or dist/)
-          if [ -d "packages/host-shell/www" ]; then
+          # Copy the Stencil output into the deployed /portfolio/ directory.
+          if [ -d "packages/host-shell/www/portfolio" ]; then
+            cp -r packages/host-shell/www/portfolio/* ../dist/portfolio/
+          elif [ -d "packages/host-shell/www" ]; then
             cp -r packages/host-shell/www/* ../dist/portfolio/
           elif [ -d "www" ]; then
             cp -r www/* ../dist/portfolio/
@@ -64,7 +66,7 @@ jobs:
       - name: Upload GitHub Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: "./dist"
 
       - name: Deploy to GitHub Pages
         id: deployment
